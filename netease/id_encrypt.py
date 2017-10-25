@@ -61,10 +61,7 @@ def get_music_id(query):
     params = get_params(query)
     encSecKey = get_encSecKey()
     json_text = get_json(url, params, encSecKey)
-    # print(json_text)
     json_dict = json.loads(json_text)
-    # print(json_dict['comments'])
-    # for song in json_dict['result']['songs']:
     song = json_dict['result']['songs'][0]
     song_name = song['name']
     song_id = song['id']

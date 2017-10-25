@@ -1,4 +1,8 @@
-# coding = utf-8
+# -*- coding: utf-8 -*-
+"""
+Created on 2017/10/25 下午11:40
+@author: SimbaZhang
+"""
 from Crypto.Cipher import AES
 from netease.id_encrypt import get_music_id
 import base64

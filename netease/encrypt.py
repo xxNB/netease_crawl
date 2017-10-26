@@ -19,11 +19,11 @@ second_param = "010001"
 third_param = "00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7"
 forth_param = "0CoJUm6Qyw8W8jud"
 
-def get_params():
+def get_params(page=0):
     iv = "0102030405060708"
     first_key = forth_param
     second_key = 16 * 'F'
-    first_param = {'rid': '', 'offset': '0', 'total': 'true', 'limit': '20', 'csrf_token': '', }
+    first_param = {'rid': '', 'offset': '{}'.format(page), 'total': 'true', 'limit': '20', 'csrf_token': '', }
     first_param = json.dumps(first_param)
     h_encText = AES_encrypt(first_param, first_key, iv)
     h_encText = AES_encrypt(bytes_str(h_encText), second_key, iv)
@@ -56,8 +56,8 @@ def get_json(url, params, encSecKey):
     response = requests.post(url, headers=headers, data=data)
     return response.content
 
-def get_parms():
-    params = get_params()
+def get_parms(page=0):
+    params = get_params(page)
     encSecKey = get_encSecKey()
     return (params, encSecKey)
 
